@@ -46,12 +46,11 @@ export const TakeQuiz = () => {
     }
   };
 
-  console.log(answers);
-
   const submitResult = (e) => {
     e.preventDefault();
     nextQuestion();
     if (answers.length > 0) {
+      console.log(answers);
       let resultPossitive;
       if (questionData.type === 'multiple') {
         let res = answers.every((answer) => {
@@ -77,10 +76,9 @@ export const TakeQuiz = () => {
         ]);
       }
     } else {
-      setAnswers([{ name: 'skipped answer' }]);
       setWrongAnswers([
         ...wrongAnswers,
-        { question: questionData, wrongs: [...answers] },
+        { question: questionData, wrongs: [{ name: 'You skipped answer' }] },
       ]);
     }
     setAnswers([]);
@@ -90,6 +88,7 @@ export const TakeQuiz = () => {
     navigate('/quiz-list');
   };
 
+  console.log(answers);
   console.log(quizFinished);
   console.log(quiz.data.length);
 
