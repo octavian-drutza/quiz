@@ -4,10 +4,12 @@ import EditList from './pages/EditList';
 import EditQuiz from './pages/EditQuiz';
 import QuizList from './pages/QuizList';
 import TakeQuiz from './pages/TakeQuiz';
+import Navbar from './Navbar';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/edit-list' element={<EditList />} />

@@ -3,14 +3,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import AnswerForm from './AnswerForm';
 
-const QuestionForm = ({
-  id,
-  type,
-  question,
-  answers,
-  deleteQuestion,
-  setQuestion,
-}) => {
+const QuestionForm = ({ content, deleteQuestion, setQuestion }) => {
+  const { id, type, question, answers } = content;
+
   const [questionData, setQuestionData] = useState({
     id: id,
     type: type,
@@ -58,29 +53,23 @@ const QuestionForm = ({
     }
   };
 
-  // console.log(answerData);
+  // console.log(questionData);
 
   return (
-    <>
+    <section className='question-edit'>
       <div>
-        <label htmlFor='titleInput'>Question Title:</label>
-        <input
-          type='text'
-          name='titleInput'
-          value={questionData.question}
-          onChange={(e) => {
-            setQuestionContent(e.target.value);
-          }}
-        />
-        <button
-          onClick={() => {
-            deleteQuestion(id);
-          }}
-        >
-          Delete Question
-        </button>
-
-        <div>
+        <article className='edit-input'>
+          <label htmlFor='titleInput'>Question Title:</label>
+          <input
+            type='text'
+            name='titleInput'
+            value={questionData.question}
+            onChange={(e) => {
+              setQuestionContent(e.target.value);
+            }}
+          />
+        </article>
+        <article className='edit-type'>
           <label htmlFor='typeSelect'>Question Type:</label>
           <select
             name='typeSelect'
@@ -93,8 +82,9 @@ const QuestionForm = ({
             <option value='single'>Single Answer</option>
             <option value='input'>Input</option>
           </select>
-        </div>
-        <div>
+        </article>
+
+        <article className='add-answer'>
           <h5>Add new answer:</h5>
           <input
             type='text'
@@ -110,22 +100,51 @@ const QuestionForm = ({
               getAnswerStatus(e.target);
             }}
           />
-          <button onClick={setAnswer}>+ Answer</button>
-        </div>
-        <h5>Edit answers:</h5>
-        {questionData.answers ? (
-          questionData.answers.map((answer, index) => {
-            return (
-              <AnswerForm key={index} {...answer} deleteAnswer={deleteAnswer} />
-            );
-          })
-        ) : (
-          <div></div>
-        )}
+          <button className='add-answer-btn' onClick={setAnswer}>
+            + Answer
+          </button>
+        </article>
 
-        <br />
+        <article className='answers-list'>
+          <h5>Edit answers:</h5>
+          {questionData.answers ? (
+            questionData.answers.map((answer, index) => {
+              return (
+                <AnswerForm
+                  key={index}
+                  {...answer}
+                  deleteAnswer={deleteAnswer}
+                />
+              );
+            })
+          ) : (
+            <div></div>
+          )}
+        </article>
+
+        <button
+          className='del-question-btn'
+          onClick={() => {
+            deleteQuestion(id);
+          }}
+        >
+          Delete Question
+        </button>
+
+        {/* <button
+          onClick={() => {
+            setQuestionData({
+              ...questionData,
+              type: content.type,
+              question: content.question,
+              answers: content.answers,
+            });
+          }}
+        >
+          Discard Question Changes
+        </button> */}
       </div>
-    </>
+    </section>
   );
 };
 

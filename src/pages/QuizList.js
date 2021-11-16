@@ -12,15 +12,11 @@ export const QuizList = () => {
   };
 
   return (
-    <>
+    <section className='view-quizes-list'>
       {quizes.map((quiz) => {
-        return (
-          <div key={quiz.quizId}>
-            <QuizPreview {...quiz} goTake={goTake} />
-          </div>
-        );
+        return <QuizPreview key={quiz.quizId} {...quiz} goTake={goTake} />;
       })}
-    </>
+    </section>
   );
 };
 

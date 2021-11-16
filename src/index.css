@@ -1,13 +1,73 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: #f1f5f8;
+  color: #102a42;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: 0.25rem;
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.25rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+.take-quiz-question,
+.take-quiz-pg,
+.take-quiz-page-submit-button,
+.take-quiz-pg-submit-btn,
+.take-quiz-res-ans,
+.view-quizes-list,
+.home-page-container,
+.answer,
+.del-answer-btn,
+.edit-quizes-list,
+.add-new-quiz,
+.quiz,
+.add-quiz-btn,
+.edit-quiz-button,
+.delete-quiz-button,
+.quiz-preview,
+.edit-quiz-btn,
+.del-quiz-btn,
+.take-quiz-btn,
+.quiz-edit-pg,
+.title-input,
+.question-add,
+.question-add-input,
+.question-add-input-btn,
+.question-add-type-sel,
+.question-list,
+.submit-changes-btn,
+.question-edit,
+.edit-input,
+.edit-type,
+.add-answer,
+.add-answer-btn,
+.del-question-btn,
+.answers-list {
 }

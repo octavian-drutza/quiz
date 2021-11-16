@@ -88,23 +88,18 @@ export const TakeQuiz = () => {
     navigate('/quiz-list');
   };
 
-  console.log(answers);
-  console.log(quizFinished);
-  console.log(quiz.data.length);
-
   if (quizFinished) {
     console.log(quiz.data.length);
     return (
-      <>
-        <div>
+      <section className='take-quiz-pg'>
+        <article className='take-quiz-results'>
           <h3>
             Quiz finished, your total score is {score} out of {quiz.data.length}
           </h3>
           {wrongAnswers.map((wrongAnswer, index) => {
             const { question, wrongs } = wrongAnswer;
-
             return (
-              <div key={index}>
+              <article key={index} className='take-quiz-res-ans'>
                 In question "{question.question}", you answered:
                 {wrongs.map((wrong, index) => {
                   return <li key={index}>{wrong.name}</li>;
@@ -113,24 +108,24 @@ export const TakeQuiz = () => {
                 {question.answers.map((answer, index) => {
                   return answer.correct && <li key={index}>{answer.name}</li>;
                 })}
-              </div>
+              </article>
             );
           })}
-        </div>
-        <button onClick={restart}>Back to Quizes</button>
-      </>
+          <button className='take-quiz-pg-submit-btn' onClick={restart}>
+            Back to Quizes
+          </button>
+        </article>
+      </section>
     );
   }
 
   return (
-    <div>
-      <Question
-        current={current}
-        {...questionData}
-        submitResult={submitResult}
-        getAnswer={getAnswer}
-      />
-    </div>
+    <Question
+      current={current}
+      {...questionData}
+      submitResult={submitResult}
+      getAnswer={getAnswer}
+    />
   );
 };
 

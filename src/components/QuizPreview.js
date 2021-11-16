@@ -5,14 +5,14 @@ const QuizPreview = ({ quizId, title, isEdit, goEdit, goTake }) => {
   const { deleteQuiz } = useGlobalContext();
 
   return (
-    <>
-      <div>
-        <h3>Quiz ID: {quizId}</h3>
-        <h3>Quiz Title: {title}</h3>
-      </div>
+    <section className='quiz-preview'>
+      <h3>Quiz ID: {quizId}</h3>
+      <h3>Quiz Title: {title}</h3>
+
       {isEdit ? (
         <div>
           <button
+            className='edit-quiz-btn'
             onClick={() => {
               goEdit(quizId);
             }}
@@ -20,6 +20,7 @@ const QuizPreview = ({ quizId, title, isEdit, goEdit, goTake }) => {
             Edit Quiz
           </button>
           <button
+            className='del-quiz-btn'
             onClick={() => {
               deleteQuiz(quizId);
             }}
@@ -30,6 +31,7 @@ const QuizPreview = ({ quizId, title, isEdit, goEdit, goTake }) => {
       ) : (
         <div>
           <button
+            className='take-quiz-btn'
             onClick={() => {
               goTake(quizId);
             }}
@@ -38,7 +40,7 @@ const QuizPreview = ({ quizId, title, isEdit, goEdit, goTake }) => {
           </button>
         </div>
       )}
-    </>
+    </section>
   );
 };
 

@@ -17,10 +17,6 @@ export const EditList = () => {
     navigate(`/edit-quiz/${id}`);
   };
 
-  // const addNewQuiz = () => {
-  //   addQuiz(newQuiz);
-  // };
-
   const setNewQuizTitle = (value) => {
     setNewQuiz({
       ...newQuiz,
@@ -32,31 +28,34 @@ export const EditList = () => {
   console.log(quizes);
 
   return (
-    <>
-      <div>
-        <h2>Add New Quiz:</h2>
+    <section className='edit-quizes-list'>
+      <article className='add-new-quiz'>
+        <h3>Add New Quiz:</h3>
         <input
           type='text'
           value={newQuiz.title}
           onChange={(e) => setNewQuizTitle(e.target.value)}
         />
         <button
+          className='add-quiz-btn'
           onClick={() => {
             addQuiz(newQuiz);
           }}
         >
           + Add
         </button>
-      </div>
-      <h2>Edit Quizes:</h2>
-      {quizes.map((quiz) => {
-        return (
-          <div key={quiz.quizId}>
-            <QuizPreview {...quiz} isEdit={true} goEdit={goEdit} />
-          </div>
-        );
-      })}
-    </>
+      </article>
+      <article className='quiz'>
+        <h3>Edit Quizes:</h3>
+        {quizes.map((quiz) => {
+          return (
+            <div key={quiz.quizId}>
+              <QuizPreview {...quiz} isEdit={true} goEdit={goEdit} />
+            </div>
+          );
+        })}
+      </article>
+    </section>
   );
 };
 

@@ -10,6 +10,7 @@ export const EditQuiz = () => {
   let quiz = quizes.find((quiz) => {
     return quiz.quizId === quizId;
   });
+  let initialData = { ...quiz };
 
   const [data, setData] = useState({
     quizId: quizId,
@@ -61,74 +62,90 @@ export const EditQuiz = () => {
     setData({ ...data, questions: [...data.questions, newQuestion] });
   };
 
-  console.log(quizes);
+  console.log(initialData, data.questions);
 
   return (
-    <>
-      <h2>Quiz ID: {quizId}</h2>
-      <label htmlFor='titleInput'>Title:</label>
-      <input
-        type='text'
-        name='titleInput'
-        value={data.title}
-        onChange={(e) => {
-          setTitle(e.target.value);
-        }}
-      />
-
-      <h3>Add new question to quiz:</h3>
-      <input
-        type='text'
-        value={newQuestion.question}
-        onChange={(e) => {
-          setNewQuestionContent(e.target.value);
-        }}
-      />
-      <button onClick={addNewQuestion}>Add Question</button>
-
-      <div>
-        <label htmlFor='typeSelect'>Question Type:</label>
-        <select
-          name='typeSelect'
-          value={newQuestion.type}
+    <section className='quiz-edit-pg'>
+      <article className='title-input'>
+        <h3>Quiz ID: {quizId}</h3>
+        <label htmlFor='titleInput'>Title:</label>
+        <input
+          type='text'
+          name='titleInput'
+          value={data.title}
           onChange={(e) => {
-            setNewQuestionType(e.target.value);
+            setTitle(e.target.value);
           }}
-        >
-          <option value='multiple'>Multiple Answers</option>
-          <option value='single'>Single Answer</option>
-          <option value='input'>Input</option>
-        </select>
-      </div>
-
-      <h3>Edit Questions:</h3>
-
-      {data.questions ? (
-        data.questions.map((question) => {
-          return (
-            <QuestionForm
-              key={question.id}
-              {...question}
-              deleteQuestion={deleteQuestion}
-              setQuestion={setQuestion}
-            />
-          );
-        })
-      ) : (
-        <div>no questions yet</div>
-      )}
-
-      <div>
-        <button
-          onClick={() => {
-            updateQuiz(quizId, data);
+        />
+      </article>
+      <article className='question-add'>
+        <h3>Add new question to quiz:</h3>
+        <textarea
+          className='question-add-input'
+          type='text'
+          value={newQuestion.question}
+          onChange={(e) => {
+            setNewQuestionContent(e.target.value);
           }}
-        >
-          Save Changes
+        />
+        <button className='question-add-input-btn' onClick={addNewQuestion}>
+          + Question
         </button>
-        <button>Discard Changes</button>
-      </div>
-    </>
+        <div className='question-add-type-sel'>
+          <label htmlFor='typeSelect'>Question Type:</label>
+          <select
+            name='typeSelect'
+            value={newQuestion.type}
+            onChange={(e) => {
+              setNewQuestionType(e.target.value);
+            }}
+          >
+            <option value='multiple'>Multiple Answers</option>
+            <option value='single'>Single Answer</option>
+            <option value='input'>Input</option>
+          </select>
+        </div>
+      </article>
+
+      <article className='question-list'>
+        <h3>Edit Questions:</h3>
+        {data.questions ? (
+          data.questions.map((question) => {
+            return (
+              <QuestionForm
+                key={question.id}
+                content={question}
+                deleteQuestion={deleteQuestion}
+                setQuestion={setQuestion}
+              />
+            );
+          })
+        ) : (
+          <h4>no questions yet</h4>
+        )}
+        <div>
+          <button
+            className='submit-changes-btn'
+            onClick={() => {
+              updateQuiz(quizId, data);
+            }}
+          >
+            Submit All Changes
+          </button>
+          {/* <button
+          onClick={() => {
+            setData({
+              quizId: initialData.quizId,
+              title: initialData.title,
+              questions: initialData.data,
+            });
+          }}
+        >
+          Back to Edit List
+        </button> */}
+        </div>
+      </article>
+    </section>
   );
 };
 
