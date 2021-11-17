@@ -3,19 +3,20 @@ import { useParams } from 'react-router';
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
 import QuestionForm from '../components/QuestionForm';
+import { useNavigate } from 'react-router-dom';
 
 export const EditQuiz = () => {
   const { quizId } = useParams();
   const { quizes, updateQuiz } = useGlobalContext();
+  let navigate = useNavigate();
   let quiz = quizes.find((quiz) => {
     return quiz.quizId === quizId;
   });
-  let initialData = { ...quiz };
 
   const [data, setData] = useState({
     quizId: quizId,
     title: quiz.title,
-    questions: quiz.data,
+    data: quiz.data,
   });
 
   const [newQuestion, setNewQuestion] = useState({
@@ -30,17 +31,17 @@ export const EditQuiz = () => {
   };
 
   const setQuestion = (id, newData) => {
-    let otherQuestions = data.questions.filter((question) => {
+    let otherQuestions = data.data.filter((question) => {
       return question.id !== id;
     });
-    setData({ ...data, questions: [...otherQuestions, newData] });
+    setData({ ...data, data: [...otherQuestions, newData] });
   };
 
   const deleteQuestion = (id) => {
-    let newQuestions = data.questions.filter((question) => {
+    let newQuestions = data.data.filter((question) => {
       return question.id !== id;
     });
-    setData({ ...data, questions: newQuestions });
+    setData({ ...data, data: newQuestions });
   };
 
   const setNewQuestionContent = (value) => {
@@ -59,10 +60,15 @@ export const EditQuiz = () => {
   };
 
   const addNewQuestion = () => {
-    setData({ ...data, questions: [...data.questions, newQuestion] });
+    setData({ ...data, data: [...data.data, newQuestion] });
   };
 
-  console.log(initialData, data.questions);
+  const submitAndGo = () => {
+    updateQuiz(quizId, data);
+    navigate('/edit-list');
+  };
+
+  // console.log(initialData, data.data);
 
   return (
     <section className='quiz-edit-pg'>
@@ -116,8 +122,8 @@ export const EditQuiz = () => {
           </article>
         </section>
         <h3>Edit Questions:</h3>
-        {data.questions ? (
-          data.questions.map((question) => {
+        {data.data ? (
+          data.data.map((question) => {
             return (
               <QuestionForm
                 key={question.id}
@@ -131,12 +137,7 @@ export const EditQuiz = () => {
           <h4>no questions yet</h4>
         )}
         <div>
-          <button
-            className='submit-changes-btn'
-            onClick={() => {
-              updateQuiz(quizId, data);
-            }}
-          >
+          <button className='submit-changes-btn' onClick={submitAndGo}>
             Submit All Changes
           </button>
           {/* <button

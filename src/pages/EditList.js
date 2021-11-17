@@ -25,8 +25,6 @@ export const EditList = () => {
     });
   };
 
-  console.log(quizes);
-
   return (
     <section className='edit-quizes-page'>
       <h3>Add New Quiz:</h3>

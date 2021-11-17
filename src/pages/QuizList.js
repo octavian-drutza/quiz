@@ -11,11 +11,16 @@ export const QuizList = () => {
     navigate(`/take-quiz/${id}`);
   };
 
+  console.log(quizes);
+
   return (
-    <section className='view-quizes-list'>
-      {quizes.map((quiz) => {
-        return <QuizPreview key={quiz.quizId} {...quiz} goTake={goTake} />;
-      })}
+    <section className='view-quizes-page'>
+      <h3>Choose a quiz:</h3>
+      <section className='view-quizes-list'>
+        {quizes.map((quiz) => {
+          return <QuizPreview key={quiz.quizId} {...quiz} goTake={goTake} />;
+        })}
+      </section>
     </section>
   );
 };

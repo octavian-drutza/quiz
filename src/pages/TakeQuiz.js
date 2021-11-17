@@ -20,6 +20,9 @@ export const TakeQuiz = () => {
   });
   let questionData = quiz.data[current];
 
+  console.log(quizes);
+  console.log(quiz);
+
   const nextQuestion = () => {
     if (current < quiz.data.length - 1) {
       setCurrent(current + 1);
