@@ -28,33 +28,42 @@ export const EditList = () => {
   console.log(quizes);
 
   return (
-    <section className='edit-quizes-list'>
+    <section className='edit-quizes-page'>
+      <h3>Add New Quiz:</h3>
       <article className='add-new-quiz'>
-        <h3>Add New Quiz:</h3>
-        <input
-          type='text'
-          value={newQuiz.title}
-          onChange={(e) => setNewQuizTitle(e.target.value)}
-        />
-        <button
-          className='add-quiz-btn'
-          onClick={() => {
-            addQuiz(newQuiz);
-          }}
-        >
-          + Add
-        </button>
+        <article className='quiz-title-input'>
+          <label htmlFor='quizTitleInput'>Quiz Title: </label>
+          <div className='quiz-title-input-group'>
+            <input
+              name='quizeTitleInput'
+              type='text'
+              value={newQuiz.title}
+              onChange={(e) => setNewQuizTitle(e.target.value)}
+            />
+            <button
+              className='add-quiz-btn'
+              onClick={() => {
+                addQuiz(newQuiz);
+              }}
+            >
+              +
+            </button>
+          </div>
+        </article>
       </article>
-      <article className='quiz'>
-        <h3>Edit Quizes:</h3>
+      <h3>Edit Quizes:</h3>
+      <section className='edit-quizes-list'>
         {quizes.map((quiz) => {
           return (
-            <div key={quiz.quizId}>
-              <QuizPreview {...quiz} isEdit={true} goEdit={goEdit} />
-            </div>
+            <QuizPreview
+              key={quiz.quizId}
+              {...quiz}
+              isEdit={true}
+              goEdit={goEdit}
+            />
           );
         })}
-      </article>
+      </section>
     </section>
   );
 };

@@ -6,8 +6,8 @@ const QuizPreview = ({ quizId, title, isEdit, goEdit, goTake }) => {
 
   return (
     <section className='quiz-preview'>
-      <h3>Quiz ID: {quizId}</h3>
-      <h3>Quiz Title: {title}</h3>
+      <h4>Quiz ID: {quizId}</h4>
+      <h4>Quiz Title: {title}</h4>
 
       {isEdit ? (
         <div>

@@ -57,81 +57,85 @@ const QuestionForm = ({ content, deleteQuestion, setQuestion }) => {
 
   return (
     <section className='question-edit'>
-      <div>
-        <article className='edit-input'>
-          <label htmlFor='titleInput'>Question Title:</label>
-          <input
-            type='text'
-            name='titleInput'
-            value={questionData.question}
-            onChange={(e) => {
-              setQuestionContent(e.target.value);
-            }}
-          />
-        </article>
-        <article className='edit-type'>
-          <label htmlFor='typeSelect'>Question Type:</label>
-          <select
-            name='typeSelect'
-            value={questionData.type}
-            onChange={(e) => {
-              setType(e.target.value);
-            }}
-          >
-            <option value='multiple'>Multiple Answers</option>
-            <option value='single'>Single Answer</option>
-            <option value='input'>Input</option>
-          </select>
-        </article>
+      <article className='edit-input'>
+        <label htmlFor='titleInput'>Question Title:</label>
+        <input
+          size='50'
+          type='text'
+          name='titleInput'
+          value={questionData.question}
+          onChange={(e) => {
+            setQuestionContent(e.target.value);
+          }}
+        />
+      </article>
+      <article className='edit-type'>
+        <label htmlFor='typeSelect'>Question Type:</label>
+        <select
+          name='typeSelect'
+          value={questionData.type}
+          onChange={(e) => {
+            setType(e.target.value);
+          }}
+        >
+          <option value='multiple'>Multiple Answers</option>
+          <option value='single'>Single Answer</option>
+          <option value='input'>Input</option>
+        </select>
+      </article>
 
-        <article className='add-answer'>
-          <h5>Add new answer:</h5>
+      <article className='add-answer'>
+        <div className='add-answer-group'>
+          <label htmlFor='addAnswerInput'>Add new answer:</label>
           <input
+            name='addAnswerInput'
             type='text'
             value={answerData.name}
             onChange={(e) => {
               getAnswerValue(e.target.value);
             }}
           />
+          <button className='add-answer-btn' onClick={setAnswer}>
+            +
+          </button>
+        </div>
+        <div className='add-answer-group'>
+          <label htmlFor='addAnswerCheck'>Check if correct: </label>
           <input
+            className='add-answer-check'
+            name='addAnswerCheck'
             type='checkbox'
             checked={answerData.correct}
             onChange={(e) => {
               getAnswerStatus(e.target);
             }}
           />
-          <button className='add-answer-btn' onClick={setAnswer}>
-            + Answer
-          </button>
-        </article>
+        </div>
+      </article>
 
-        <article className='answers-list'>
-          <h5>Edit answers:</h5>
-          {questionData.answers ? (
-            questionData.answers.map((answer, index) => {
-              return (
-                <AnswerForm
-                  key={index}
-                  {...answer}
-                  deleteAnswer={deleteAnswer}
-                />
-              );
-            })
-          ) : (
-            <div></div>
-          )}
-        </article>
+      <article className='answers-list'>
+        <h5>Answers:</h5>
+        {questionData.answers ? (
+          questionData.answers.map((answer, index) => {
+            return (
+              <AnswerForm key={index} {...answer} deleteAnswer={deleteAnswer} />
+            );
+          })
+        ) : (
+          <div></div>
+        )}
+      </article>
 
-        <button
-          className='del-question-btn'
-          onClick={() => {
-            deleteQuestion(id);
-          }}
-        >
-          Delete Question
-        </button>
+      <button
+        className='del-question-btn'
+        onClick={() => {
+          deleteQuestion(id);
+        }}
+      >
+        Delete Question
+      </button>
 
-        {/* <button
+      {/* <button
           onClick={() => {
             setQuestionData({
               ...questionData,
@@ -143,7 +147,6 @@ const QuestionForm = ({ content, deleteQuestion, setQuestion }) => {
         >
           Discard Question Changes
         </button> */}
-      </div>
     </section>
   );
 };

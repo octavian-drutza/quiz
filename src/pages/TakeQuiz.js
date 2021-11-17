@@ -111,7 +111,7 @@ export const TakeQuiz = () => {
               </article>
             );
           })}
-          <button className='take-quiz-pg-submit-btn' onClick={restart}>
+          <button className='back-to-quizes-btn' onClick={restart}>
             Back to Quizes
           </button>
         </article>

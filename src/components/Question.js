@@ -52,7 +52,9 @@ const Question = ({
             </div>
           );
         })}
-        <button type='submit'>Submit</button>
+        <button className='take-quiz-pg-submit-btn' type='submit'>
+          Submit
+        </button>
       </form>
     </section>
   );

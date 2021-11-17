@@ -66,48 +66,55 @@ export const EditQuiz = () => {
 
   return (
     <section className='quiz-edit-pg'>
-      <article className='title-input'>
-        <h3>Quiz ID: {quizId}</h3>
-        <label htmlFor='titleInput'>Title:</label>
-        <input
-          type='text'
-          name='titleInput'
-          value={data.title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-      </article>
-      <article className='question-add'>
-        <h3>Add new question to quiz:</h3>
-        <textarea
-          className='question-add-input'
-          type='text'
-          value={newQuestion.question}
-          onChange={(e) => {
-            setNewQuestionContent(e.target.value);
-          }}
-        />
-        <button className='question-add-input-btn' onClick={addNewQuestion}>
-          + Question
-        </button>
-        <div className='question-add-type-sel'>
-          <label htmlFor='typeSelect'>Question Type:</label>
-          <select
-            name='typeSelect'
-            value={newQuestion.type}
-            onChange={(e) => {
-              setNewQuestionType(e.target.value);
-            }}
-          >
-            <option value='multiple'>Multiple Answers</option>
-            <option value='single'>Single Answer</option>
-            <option value='input'>Input</option>
-          </select>
-        </div>
-      </article>
-
       <article className='question-list'>
+        <h3>Quiz ID: {quizId}</h3>
+        <article className='title-add'>
+          <article className='change-title-input'>
+            <label htmlFor='titleInput'>Title:</label>
+            <input
+              type='text'
+              name='titleInput'
+              value={data.title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            />
+          </article>
+        </article>
+        <h3>Add new question to quiz:</h3>
+        <section className='question-add'>
+          <article className='add-question-input'>
+            <label htmlFor='questionAddTitle'>Question Title:</label>
+            <div className='add-question-input-group '>
+              <input
+                name='questionAddTitle'
+                type='text'
+                value={newQuestion.question}
+                onChange={(e) => {
+                  setNewQuestionContent(e.target.value);
+                }}
+              />
+              <button className='add-question-btn' onClick={addNewQuestion}>
+                +
+              </button>
+            </div>
+          </article>
+
+          <article className='add-question-type'>
+            <label htmlFor='typeSelect'>Question Type:</label>
+            <select
+              name='typeSelect'
+              value={newQuestion.type}
+              onChange={(e) => {
+                setNewQuestionType(e.target.value);
+              }}
+            >
+              <option value='multiple'>Multiple Answers</option>
+              <option value='single'>Single Answer</option>
+              <option value='input'>Input</option>
+            </select>
+          </article>
+        </section>
         <h3>Edit Questions:</h3>
         {data.questions ? (
           data.questions.map((question) => {
