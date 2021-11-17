@@ -234,6 +234,14 @@ h3 {
   margin: 1rem;
 }
 
+button {
+  transition: all 0.01s linear;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
 @media screen and (max-width: 550px) {
   .edit-input,
   .edit-type,
