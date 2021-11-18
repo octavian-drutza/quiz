@@ -68,8 +68,6 @@ export const EditQuiz = () => {
     navigate('/edit-list');
   };
 
-  // console.log(initialData, data.data);
-
   return (
     <section className='quiz-edit-pg'>
       <article className='question-list'>
@@ -140,17 +138,6 @@ export const EditQuiz = () => {
           <button className='submit-changes-btn' onClick={submitAndGo}>
             Submit All Changes
           </button>
-          {/* <button
-          onClick={() => {
-            setData({
-              quizId: initialData.quizId,
-              title: initialData.title,
-              questions: initialData.data,
-            });
-          }}
-        >
-          Back to Edit List
-        </button> */}
         </div>
       </article>
     </section>

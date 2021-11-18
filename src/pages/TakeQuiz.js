@@ -20,9 +20,6 @@ export const TakeQuiz = () => {
   });
   let questionData = quiz.data[current];
 
-  console.log(quizes);
-  console.log(quiz);
-
   const nextQuestion = () => {
     if (current < quiz.data.length - 1) {
       setCurrent(current + 1);
@@ -53,7 +50,6 @@ export const TakeQuiz = () => {
     e.preventDefault();
     nextQuestion();
     if (answers.length > 0) {
-      console.log(answers);
       let resultPossitive;
       if (questionData.type === 'multiple') {
         let res = answers.every((answer) => {
@@ -92,7 +88,6 @@ export const TakeQuiz = () => {
   };
 
   if (quizFinished) {
-    console.log(quiz.data.length);
     return (
       <section className='take-quiz-pg'>
         <article className='take-quiz-results'>

@@ -11,8 +11,6 @@ export const QuizList = () => {
     navigate(`/take-quiz/${id}`);
   };
 
-  console.log(quizes);
-
   return (
     <section className='view-quizes-page'>
       <h3>Choose a quiz:</h3>

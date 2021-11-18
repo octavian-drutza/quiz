@@ -53,8 +53,6 @@ const QuestionForm = ({ content, deleteQuestion, setQuestion }) => {
     }
   };
 
-  // console.log(questionData);
-
   return (
     <section className='question-edit'>
       <article className='edit-input'>
@@ -134,19 +132,6 @@ const QuestionForm = ({ content, deleteQuestion, setQuestion }) => {
       >
         Delete Question
       </button>
-
-      {/* <button
-          onClick={() => {
-            setQuestionData({
-              ...questionData,
-              type: content.type,
-              question: content.question,
-              answers: content.answers,
-            });
-          }}
-        >
-          Discard Question Changes
-        </button> */}
     </section>
   );
 };
